@@ -34,7 +34,7 @@ const StyledSocialIconArea = styled.div`
 
 function LoginForm(props) {
   const { buttonText, onEmailSubmit, onSocialSubmit, serverErrorMessage } = props;
-  const [displayEmail, setDisplayEmail] = useState(false);
+  const [displayEmail, setDisplayEmail] = useState(true);
 
   const loginFormSchema = yup
     .object({
@@ -61,7 +61,7 @@ function LoginForm(props) {
 
   const handleClick = (e) => {
     e.preventDefault();
-    setDisplayEmail(!displayEmail);
+    setDisplayEmail(displayEmail);
   };
 
   const errorBorder = (error) => error && { borderColor: "red" };
@@ -77,9 +77,9 @@ function LoginForm(props) {
       </StyledSocialIconArea>
       <StyledHeading> OR </StyledHeading>
 
-      {!displayEmail && <Button onClick={handleClick} text="Email" />}
+      {displayEmail && <Button onClick={handleClick} text="Email" />}
 
-      {displayEmail && (
+      {!displayEmail && (
         <form onSubmit={handleSubmit(onEmailSubmit)}>
           <p>
             <label> Email </label>
